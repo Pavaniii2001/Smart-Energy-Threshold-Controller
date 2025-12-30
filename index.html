@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SETC Smart Energy Plug</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            border-radius: 50%;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            bottom: -175px;
+            left: -175px;
+            border-radius: 50%;
+            animation: pulse 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .header h1 {
+            font-size: 3.2em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+            letter-spacing: -1.5px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header .tagline {
+            font-size: 1.4em;
+            font-weight: 300;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .energy-icon {
+            font-size: 7em;
+            margin: 25px 0;
+            position: relative;
+            z-index: 1;
+            font-weight: bold;
+            text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 25px;
+            margin-bottom: 50px;
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.5);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            top: -125px;
+            right: -75px;
+        }
+
+        .highlight-box h2 {
+            font-size: 2.3em;
+            margin-bottom: 20px;
+            font-weight: 900;
+            position: relative;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .highlight-box h2::before {
+            content: '★';
+            margin-right: 18px;
+            font-size: 1.4em;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+
+        .highlight-box p {
+            font-size: 1.15em;
+            line-height: 1.9;
+            position: relative;
+            font-weight: 400;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .feature-card:nth-child(1) {
+            border-color: #667eea;
+        }
+
+        .feature-card:nth-child(2) {
+            border-color: #764ba2;
+        }
+
+        .feature-card:nth-child(3) {
+            border-color: #f093fb;
+        }
+
+        .feature-card:nth-child(4) {
+            border-color: #f5576c;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.4);
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.95;
+        }
+
+        .feature-card:hover .feature-icon,
+        .feature-card:hover h3,
+        .feature-card:hover p {
+            color: white;
+            -webkit-text-fill-color: white;
+        }
+
+        .feature-icon {
+            font-size: 4.5em;
+            margin-bottom: 18px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            font-weight: 800;
+            color: #667eea;
+            position: relative;
+            z-index: 1;
+            transition: color 0.5s ease;
+        }
+
+        .feature-card p {
+            font-size: 1em;
+            color: #666;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            transition: color 0.5s ease;
+        }
+
+        .threshold-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 45px;
+            border-radius: 25px;
+            margin: 50px 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e0e0e0;
+        }
+
+        .threshold-section h2 {
+            color: #667eea;
+            margin-bottom: 35px;
+            font-size: 2.4em;
+            font-weight: 900;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .threshold-section h2::before {
+            content: '⚙';
+            margin-right: 18px;
+            color: #764ba2;
+            font-size: 1.2em;
+        }
+
+        .threshold-item {
+            background: white;
+            padding: 30px 35px;
+            margin: 22px 0;
+            border-radius: 18px;
+            border-left: 8px solid #667eea;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .threshold-item:nth-child(2) {
+            border-left-color: #764ba2;
+        }
+
+        .threshold-item:nth-child(3) {
+            border-left-color: #f093fb;
+        }
+
+        .threshold-item:nth-child(4) {
+            border-left-color: #f5576c;
+        }
+
+        .threshold-item:hover {
+            transform: translateX(15px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .threshold-item h4 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1.5em;
+            font-weight: 800;
+        }
+
+        .threshold-item h4::before {
+            content: '●';
+            margin-right: 15px;
+            font-size: 0.9em;
+        }
+
+        .threshold-item p {
+            font-size: 1.05em;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* ENHANCED BUTTONS SECTION - MAIN FOCUS */
+        .buttons-section {
+            margin: 60px 0;
+            padding: 50px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buttons-section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            border-radius: 50%;
+        }
+
+        .buttons-section::after {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            bottom: -80px;
+            left: -80px;
+            border-radius: 50%;
+        }
+
+        .buttons-section h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            font-size: 2.8em;
+            font-weight: 900;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .buttons-section h2::before {
+            content: '📂';
+            margin-right: 20px;
+            font-size: 1.1em;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* MODERN PROFESSIONAL BUTTON DESIGN */
+        .resource-button {
+            background: white;
+            color: #333;
+            padding: 35px 30px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            min-height: 180px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid transparent;
+        }
+
+        /* Gradient overlay effect */
+        .resource-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
+
+        /* Shine effect on hover */
+        .resource-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent 30%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    transparent 70%);
+            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            transition: transform 0.6s ease;
+        }
+
+        .resource-button:hover::before {
+            opacity: 1;
+        }
+
+        .resource-button:hover::after {
+            transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+
+        .resource-button:hover {
+            transform: translateY(-18px) scale(1.08);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+            border-color: #ffd700;
+            color: white;
+        }
+
+        .resource-button:active {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .resource-button:hover .icon {
+            transform: scale(1.3) rotate(15deg);
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+        }
+
+        .resource-button .icon {
+            font-size: 4.5em;
+            margin-bottom: 18px;
+            font-weight: 900;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 1;
+        }
+
+        .resource-button .title {
+            font-size: 1.5em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .resource-button .subtitle {
+            font-size: 0.95em;
+            opacity: 0.75;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease;
+            font-weight: 500;
+        }
+
+        .resource-button:hover .subtitle {
+            opacity: 1;
+            letter-spacing: 0.5px;
+        }
+
+        /* Individual button colors */
+        .resource-button:nth-child(1) .icon {
+            color: #667eea;
+        }
+
+        .resource-button:nth-child(2) .icon {
+            color: #764ba2;
+        }
+
+        .resource-button:nth-child(3) .icon {
+            color: #f093fb;
+        }
+
+        .resource-button:nth-child(4) .icon {
+            color: #f5576c;
+        }
+
+        .resource-button:nth-child(5) .icon {
+            color: #4facfe;
+        }
+
+        .resource-button:nth-child(6) .icon {
+            color: #43e97b;
+        }
+
+        .resource-button:hover .icon {
+            color: white;
+        }
+
+        /* Ripple effect on click */
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .specs-table {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            margin: 50px 0;
+            border: 4px solid #667eea;
+        }
+
+        .specs-table h3 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 35px;
+            font-size: 2em;
+            font-weight: 900;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .specs-table h3::before {
+            content: '⚙';
+            margin-right: 18px;
+            font-size: 1.4em;
+        }
+
+        .spec-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 25px 35px;
+            border-bottom: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-row:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .spec-row:hover {
+            background: linear-gradient(90deg, #e9ecef 0%, #f8f9fa 100%);
+            transform: scale(1.02);
+            box-shadow: inset 5px 0 0 #667eea;
+        }
+
+        .spec-label {
+            font-weight: 800;
+            color: #667eea;
+            font-size: 1.15em;
+        }
+
+        .spec-value {
+            color: #555;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 45px;
+            border-radius: 25px;
+            margin: 50px 0;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(240, 147, 251, 0.5);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            top: -120px;
+            left: -80px;
+        }
+
+        .contact-section h3 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            font-weight: 900;
+            position: relative;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-section h3::before {
+            content: '✉';
+            margin-right: 18px;
+            font-size: 1.3em;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            font-size: 1.1em;
+            position: relative;
+        }
+
+        .contact-info p {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 18px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-info p:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(10px);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact-info p::before {
+            content: '→';
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            font-size: 1.05em;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            opacity: 0.9;
+        }
+
+        .footer p:first-child {
+            font-weight: 800;
+            font-size: 1.3em;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+
+            .features-grid,
+            .button-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .buttons-section h2 {
+                font-size: 2em;
+            }
+
+            .resource-button {
+                min-height: 160px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .resource-button:hover {
+                transform: none;
+            }
+
+            a {
+                color: inherit;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="energy-icon">⚡</div>
+            <h1>SETC SMART ENERGY PLUG</h1>
+            <p class="tagline">Intelligent Power Control • Real-Time Monitoring</p>
+        </div>
+
+        <div class="content">
+            <div class="highlight-box">
+                <h2>What Makes It Special?</h2>
+                <p>The Smart Energy Monitor Plug is your intelligent power guardian! It monitors real-time energy
+                    consumption and automatically disconnects appliances when your custom threshold is exceeded. No
+                    internet required – complete privacy, reliability, and safety at your fingertips.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">●</div>
+                    <h3>Plug & Play</h3>
+                    <p>No setup needed. Just plug in and start saving energy instantly!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">◆</div>
+                    <h3>Auto Cut-Off</h3>
+                    <p>Prevents overuse and protects your valuable appliances</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">▣</div>
+                    <h3>OLED Display</h3>
+                    <p>Real-time power and energy monitoring at a glance</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">■</div>
+                    <h3>100% Offline</h3>
+                    <p>No Wi-Fi, no apps, no cyber security risks</p>
+                </div>
+            </div>
+
+            <div class="threshold-section">
+                <h2>Three Smart Threshold Levels</h2>
+                <div class="threshold-item">
+                    <h4>Level 1: Low Power (0.5 kWh)</h4>
+                    <p>Perfect for LED bulbs, chargers, routers, night lamps – operates for approximately 8 hours</p>
+                </div>
+                <div class="threshold-item">
+                    <h4>Level 2: Medium Power (1.5 kWh)</h4>
+                    <p>Ideal for laptops, fans, TVs, kettles, study lamps – operates for approximately 8 hours</p>
+                </div>
+                <div class="threshold-item">
+                    <h4>Level 3: High Power (3.0 kWh)</h4>
+                    <p>Designed for refrigerators, microwaves, washing machines, irons – operates for approximately 8
+                        hours</p>
+                </div>
+            </div>
+
+            <div class="specs-table">
+                <h3>Technical Specifications</h3>
+                <div class="spec-row">
+                    <div class="spec-label">Input Voltage</div>
+                    <div class="spec-value">230 V AC, 50 Hz</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Maximum Load</div>
+                    <div class="spec-value">15 A / 3.5 kW</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Display</div>
+                    <div class="spec-value">OLED (Real-time)</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Control</div>
+                    <div class="spec-value">Single Push Button</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Protection</div>
+                    <div class="spec-value">Auto Cut-off, Overload</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Enclosure</div>
+                    <div class="spec-value">Flame-Retardant ABS</div>
+                </div>
+            </div>
+
+            <div class="buttons-section">
+                <h2>Explore More Resources</h2>
+                <div class="button-grid">
+                    <a href="https://drive.google.com/drive/folders/1sRs0ZVeU6beCn2owpMmNWMQFIHCBJr-N"
+                        class="resource-button" target="_blank">
+                        <div class="icon">◉</div>
+                        <div class="title">All Files</div>
+                        <div class="subtitle">Complete folder access</div>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1vhpF_FKXf5ZYyVHvfZ6EvCFJHubQcYcr/view?usp=drive_link"
+                        class="resource-button" target="_blank">
+                        <div class="icon">▲</div>
+                        <div class="title">PCB Design 1</div>
+                        <div class="subtitle">Circuit board layout</div>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1Qgz3k6FUng-tLjQuE8PHVhryQbWKOs4i/view?usp=drive_link"
+                        class="resource-button" target="_blank">
+                        <div class="icon">▼</div>
+                        <div class="title">PCB Design 2</div>
+                        <div class="subtitle">Alternative layout</div>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1dzIVHu-jSCFsuRNUizzktIVvxs-Sj_cV/view?usp=drive_link"
+                        class="resource-button" target="_blank">
+                        <div class="icon">◈</div>
+                        <div class="title">Schematic</div>
+                        <div class="subtitle">Electrical diagram</div>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1Xtjac7QJj543TTCyijuaEO50voY-APeX/view?usp=drive_link"
+                        class="resource-button" target="_blank">
+                        <div class="icon">◐</div>
+                        <div class="title">KiCad Project</div>
+                        <div class="subtitle">Editable design files</div>
+                    </a>
+                    <a href="https://drive.google.com/file/d/12p_R1-SiKrRar5KFhLKQ2NZhlKCEQo3w/view?usp=drive_link"
+                        class="resource-button" target="_blank">
+                        <div class="icon">◘</div>
+                        <div class="title">CAD Drawing</div>
+                        <div class="subtitle">Mechanical design</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h3>Need Help?</h3>
+                <div class="contact-info">
+                    <p><a href="mailto:e20085@eng.pdn.ac.lk">e20085@eng.pdn.ac.lk</a> - Dodandeniya D.G.J.K.</p>
+                    <p><a href="mailto:e20091@eng.pdn.ac.lk">e20091@eng.pdn.ac.lk</a> - Edirisinghe H.K.D.</p>
+                    <p><a href="mailto:e20281@eng.pdn.ac.lk">e20281@eng.pdn.ac.lk</a> - Pathirana B.P.P.</p>
+                </div>
+            </div>
+
+
+            <div class="footer">
+                <p>SETC Smart Energy Threshold Controller</p>
+                <p>Designed for Energy Efficiency • Built for Safety • Made for You</p>
+            </div>
+        </div>
+</body>
+
+</html>
