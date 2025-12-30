@@ -63,13 +63,10 @@
         }
 
         @keyframes pulse {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: scale(1);
                 opacity: 0.5;
             }
-
             50% {
                 transform: scale(1.1);
                 opacity: 0.8;
@@ -92,7 +89,6 @@
                 opacity: 0;
                 transform: translateY(-30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -114,7 +110,6 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -132,12 +127,9 @@
         }
 
         @keyframes bounce {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(0);
             }
-
             50% {
                 transform: translateY(-20px);
             }
@@ -201,12 +193,12 @@
         }
 
         .feature-card {
-            background: white;
-            padding: 35px;
-            border-radius: 20px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+            padding: 40px;
+            border-radius: 25px;
             text-align: center;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
             border: 3px solid transparent;
             position: relative;
             overflow: hidden;
@@ -253,20 +245,15 @@
         .feature-card:hover h3,
         .feature-card:hover p {
             color: white;
-            -webkit-text-fill-color: white;
         }
 
         .feature-icon {
-            font-size: 4.5em;
-            margin-bottom: 18px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 5em;
+            margin-bottom: 25px;
             position: relative;
             z-index: 1;
             transition: all 0.5s ease;
+            filter: drop-shadow(0 5px 15px rgba(102, 126, 234, 0.3));
         }
 
         .feature-card h3 {
@@ -348,19 +335,12 @@
             font-weight: 800;
         }
 
-        .threshold-item h4::before {
-            content: '●';
-            margin-right: 15px;
-            font-size: 0.9em;
-        }
-
         .threshold-item p {
             font-size: 1.05em;
             color: #555;
             line-height: 1.8;
         }
 
-        /* ENHANCED BUTTONS SECTION - MAIN FOCUS */
         .buttons-section {
             margin: 60px 0;
             padding: 50px 40px;
@@ -418,7 +398,6 @@
             z-index: 1;
         }
 
-        /* MODERN PROFESSIONAL BUTTON DESIGN */
         .resource-button {
             background: white;
             color: #333;
@@ -439,7 +418,6 @@
             border: 4px solid transparent;
         }
 
-        /* Gradient overlay effect */
         .resource-button::before {
             content: '';
             position: absolute;
@@ -453,7 +431,6 @@
             z-index: 0;
         }
 
-        /* Shine effect on hover */
         .resource-button::after {
             content: '';
             position: absolute;
@@ -497,7 +474,6 @@
         .resource-button .icon {
             font-size: 4.5em;
             margin-bottom: 18px;
-            font-weight: 900;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             z-index: 1;
@@ -525,48 +501,6 @@
         .resource-button:hover .subtitle {
             opacity: 1;
             letter-spacing: 0.5px;
-        }
-
-        /* Individual button colors */
-        .resource-button:nth-child(1) .icon {
-            color: #667eea;
-        }
-
-        .resource-button:nth-child(2) .icon {
-            color: #764ba2;
-        }
-
-        .resource-button:nth-child(3) .icon {
-            color: #f093fb;
-        }
-
-        .resource-button:nth-child(4) .icon {
-            color: #f5576c;
-        }
-
-        .resource-button:nth-child(5) .icon {
-            color: #4facfe;
-        }
-
-        .resource-button:nth-child(6) .icon {
-            color: #43e97b;
-        }
-
-        .resource-button:hover .icon {
-            color: white;
-        }
-
-        /* Ripple effect on click */
-        @keyframes ripple {
-            0% {
-                transform: scale(0);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(4);
-                opacity: 0;
-            }
         }
 
         .specs-table {
@@ -695,6 +629,11 @@
             font-size: 1.3em;
         }
 
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+        }
+
         .footer {
             background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
             color: white;
@@ -715,7 +654,6 @@
         }
 
         @media (max-width: 768px) {
-
             .features-grid,
             .button-grid {
                 grid-template-columns: 1fr;
@@ -732,6 +670,15 @@
 
             .resource-button {
                 min-height: 160px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .spec-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
         }
 
@@ -769,22 +716,22 @@
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">●</div>
+                    <div class="feature-icon">🔌</div>
                     <h3>Plug & Play</h3>
                     <p>No setup needed. Just plug in and start saving energy instantly!</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">◆</div>
+                    <div class="feature-icon">✂️</div>
                     <h3>Auto Cut-Off</h3>
                     <p>Prevents overuse and protects your valuable appliances</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">▣</div>
+                    <div class="feature-icon">📊</div>
                     <h3>OLED Display</h3>
                     <p>Real-time power and energy monitoring at a glance</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">■</div>
+                    <div class="feature-icon">🔒</div>
                     <h3>100% Offline</h3>
                     <p>No Wi-Fi, no apps, no cyber security risks</p>
                 </div>
@@ -793,15 +740,15 @@
             <div class="threshold-section">
                 <h2>Three Smart Threshold Levels</h2>
                 <div class="threshold-item">
-                    <h4>Level 1: Low Power (0.5 kWh)</h4>
+                    <h4>💡 Level 1: Low Power (0.5 kWh)</h4>
                     <p>Perfect for LED bulbs, chargers, routers, night lamps – operates for approximately 8 hours</p>
                 </div>
                 <div class="threshold-item">
-                    <h4>Level 2: Medium Power (1.5 kWh)</h4>
+                    <h4>🖥️ Level 2: Medium Power (1.5 kWh)</h4>
                     <p>Ideal for laptops, fans, TVs, kettles, study lamps – operates for approximately 8 hours</p>
                 </div>
                 <div class="threshold-item">
-                    <h4>Level 3: High Power (3.0 kWh)</h4>
+                    <h4>⚡ Level 3: High Power (3.0 kWh)</h4>
                     <p>Designed for refrigerators, microwaves, washing machines, irons – operates for approximately 8
                         hours</p>
                 </div>
@@ -840,37 +787,37 @@
                 <div class="button-grid">
                     <a href="https://drive.google.com/drive/folders/1sRs0ZVeU6beCn2owpMmNWMQFIHCBJr-N"
                         class="resource-button" target="_blank">
-                        <div class="icon">◉</div>
+                        <div class="icon">📁</div>
                         <div class="title">All Files</div>
                         <div class="subtitle">Complete folder access</div>
                     </a>
                     <a href="https://drive.google.com/file/d/1vhpF_FKXf5ZYyVHvfZ6EvCFJHubQcYcr/view?usp=drive_link"
                         class="resource-button" target="_blank">
-                        <div class="icon">▲</div>
+                        <div class="icon">🔷</div>
                         <div class="title">PCB Design 1</div>
                         <div class="subtitle">Circuit board layout</div>
                     </a>
                     <a href="https://drive.google.com/file/d/1Qgz3k6FUng-tLjQuE8PHVhryQbWKOs4i/view?usp=drive_link"
                         class="resource-button" target="_blank">
-                        <div class="icon">▼</div>
+                        <div class="icon">🔶</div>
                         <div class="title">PCB Design 2</div>
                         <div class="subtitle">Alternative layout</div>
                     </a>
                     <a href="https://drive.google.com/file/d/1dzIVHu-jSCFsuRNUizzktIVvxs-Sj_cV/view?usp=drive_link"
                         class="resource-button" target="_blank">
-                        <div class="icon">◈</div>
+                        <div class="icon">⚡</div>
                         <div class="title">Schematic</div>
                         <div class="subtitle">Electrical diagram</div>
                     </a>
                     <a href="https://drive.google.com/file/d/1Xtjac7QJj543TTCyijuaEO50voY-APeX/view?usp=drive_link"
                         class="resource-button" target="_blank">
-                        <div class="icon">◐</div>
+                        <div class="icon">📐</div>
                         <div class="title">KiCad Project</div>
                         <div class="subtitle">Editable design files</div>
                     </a>
                     <a href="https://drive.google.com/file/d/12p_R1-SiKrRar5KFhLKQ2NZhlKCEQo3w/view?usp=drive_link"
                         class="resource-button" target="_blank">
-                        <div class="icon">◘</div>
+                        <div class="icon">🎨</div>
                         <div class="title">CAD Drawing</div>
                         <div class="subtitle">Mechanical design</div>
                     </a>
@@ -886,12 +833,12 @@
                 </div>
             </div>
 
-
             <div class="footer">
                 <p>SETC Smart Energy Threshold Controller</p>
                 <p>Designed for Energy Efficiency • Built for Safety • Made for You</p>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
